@@ -1,12 +1,26 @@
-/*const isValidDNA = require('../dna');
+const DNAChecker = require('../dna.js'); 
 
-describe ('isValidDNA', () => {
-    it ('should retrieve true for a valid DNA', () => {
-        expect(isValidDNA('CTAG')).toBe(true);
+describe('DNAChecker Function Tests', () => {
+    // Test para una función válida de ADN
+        test('returns true for another valid DNA sequence "GATTACA"', () => {
+        expect(DNAChecker("GATTACA")).toBe(true);
     });
 
-    it('should retrieve false for invalid DNA (with mayus and minus, lowercase or empty', () => {
-        expect(isValidDNA('CTXg')).toBe(false);
+    // Test para una función con caracteres erroneos
+    test('returns false for sequence containing invalid character "CTXG"', () => {
+        expect(DNAChecker("CTXG")).toBe(false);
     });
 
-});*/
+    // Test para los caracteres en minúscula
+    test('returns false for lowercase sequence "ctag"', () => {
+        expect(DNAChecker("ctag")).toBe(false);
+    });
+
+    // Test para la cadena vacia 
+    test('returns false for an empty string', () => {
+        // Mock console.log to prevent actual logging during tests
+        console.log = jest.fn();
+        expect(DNAChecker("")).toBe(false);
+        expect(console.log).toHaveBeenCalledWith("String is empty, try again");
+    });
+});
